@@ -5,6 +5,8 @@ var filledTiles = 0; // number of correctly filled tiles
 var shouldbefilled = 0; // number of -s in the board
 var hatalar = 0; 
 
+var filledCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+
 var board = [
     "--74916-5",
     "2---6-3-9",
@@ -71,8 +73,14 @@ function setGame() {
             if (board[r][c] === "-") {
                 shouldbefilled += 1;
             }
+
+            else { // if tile not empty, fill the array of filled nums
+                filledCounts[(board[r][c])-1] += 1;
+            }
         }
     }
+
+    console.log(filledCounts)
 
 }
 
@@ -100,6 +108,13 @@ function selectTile() { //boş tile'a tıklayıp rakam ile doldurmak için
         if (solution[r][c] == numSelected.id) { //rakam doğruysa
             this.innerText = numSelected.id;  //karenin içine sayıyı yaz
             filledTiles +=1;
+
+
+            filledCounts[parseInt(numSelected.id) - 1] += 1;
+            if (isNumberCompleted(parseInt(numSelected.id) - 1)) {
+                numSelected.classList.add("number-completed");
+            }
+
             if (isPuzzleCompleted()) {
                 document.getElementById("hatalar").innerText = `Tebrikler! Bulmacayı ${hatalar} hata ile tamamladınız.`;
             }
@@ -124,6 +139,12 @@ function selectTile() { //boş tile'a tıklayıp rakam ile doldurmak için
 
 function isPuzzleCompleted() {
     if (shouldbefilled == filledTiles ) {
+        return true;
+    }
+}
+
+function isNumberCompleted(number) {
+    if(filledCounts[number] == 9) {
         return true;
     }
 }
