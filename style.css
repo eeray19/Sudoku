@@ -65,6 +65,12 @@ hr {
     background-color:  rgba(139, 201, 116, 0.995);
 }
 
+.number-completed { /* biten rakam silinir */
+    color:transparent;
+    background-color: transparent;
+    border: transparent;
+}
+
 .tile-start { /* başta var olan rakamlar belirgin olsun */
     background-color: whitesmoke;
 }
