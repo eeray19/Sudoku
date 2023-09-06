@@ -1,1 +1,1 @@
-https://eeray19.github.io/sudoku/
+https://eeray19.github.io/Sudoku/
